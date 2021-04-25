@@ -102,7 +102,6 @@ public class CadastroMedico {
                 medicos.add(new Cardiologista(nome, CPF, celular, email, CRM, "Cardiologista"));
             }
         }
-        in.close();
     }
 }
 
