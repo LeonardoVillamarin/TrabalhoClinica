@@ -1,5 +1,7 @@
 package Beans;
 
+import java.util.Random;
+import Sistema.FilaAtendimento;
 import Sistema.StatusAtendimento;
 
 public class ClinicoGeral extends Medico {
@@ -15,13 +17,13 @@ public class ClinicoGeral extends Medico {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                paciente.setStatusAtendimento(StatusAtendimento.EM_ATENDIMENTO);
+                setStatus(StatusAtendimento.EM_ATENDIMENTO);
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                paciente.setStatusAtendimento(StatusAtendimento.EM_ATENDIMENTO);
-                setStatus(StatusAtendimento.EM_ATENDIMENTO);
                 System.out.println("Clínico Geral " + getNome() + " atendendo paciente " + paciente.getNome());
                 try {
                     Thread.sleep(30000);
@@ -31,6 +33,11 @@ public class ClinicoGeral extends Medico {
                 paciente.setStatusAtendimento(StatusAtendimento.AGUARDANDO);
                 setStatus(StatusAtendimento.AGUARDANDO);
                 System.out.println("Clínico Geral " + getNome() + " aguardando paciente");
+                Random aleatorio = new Random();
+                int num = aleatorio.nextInt();
+                if(num % 2 == 0){
+                    FilaAtendimento.setPacienteNaFila(paciente.getCPF(), "Exames");
+                }
             }
         }).start();
     }

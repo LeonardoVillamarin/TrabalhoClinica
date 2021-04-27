@@ -88,10 +88,10 @@ public class CadastroMedico {
         }
         else if(escolha.equals("2")){
             if(email == null){
-                medicos.add(new ClinicoGeral(nome, CPF, celular, CRM, "Clínico Geral"));
+                medicos.add(new ClinicoGeral(nome, CPF, celular, CRM, "Geral"));
             }
             else{
-                medicos.add(new ClinicoGeral(nome, CPF, celular, email, CRM, "Clínico Geral"));
+                medicos.add(new ClinicoGeral(nome, CPF, celular, email, CRM, "Geral"));
             }
         }
         else if(escolha.equals("3")){

@@ -15,13 +15,13 @@ public class Cardiologista extends Medico{
         new Thread(new Runnable() {
             @Override
             public void run() {
+                paciente.setStatusAtendimento(StatusAtendimento.EM_ATENDIMENTO);
+                setStatus(StatusAtendimento.EM_ATENDIMENTO);
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
-                paciente.setStatusAtendimento(StatusAtendimento.EM_ATENDIMENTO);
-                setStatus(StatusAtendimento.EM_ATENDIMENTO);
+                } 
                 System.out.println("Cardiologista " + getNome() + " atendendo paciente " + paciente.getNome());
                 try {
                     Thread.sleep(30000);

@@ -1,6 +1,5 @@
 package Sistema;
 
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.Map.Entry;
@@ -52,9 +51,9 @@ public abstract class FilaAtendimento {
     }
     public static void setPacienteNaFila(String CPF, String enfermidade){
         for(Paciente paciente : CadastroPaciente.getVectorPacientes()){
-            if(paciente.getCPF().equals(CPF)){ 
+            if(paciente.getCPF().equals(CPF)){
                 String isAbsent = filaAtendimento.putIfAbsent(paciente, enfermidade);
-                if(isAbsent == null){
+                if(isAbsent != null){
                     System.out.println("Paciente já está na fila");
                 }
             }
@@ -67,17 +66,17 @@ public abstract class FilaAtendimento {
     public static void getFila(){
         int contador = 1;
         for(Paciente paciente : filaAtendimento.keySet()){
-            System.out.println(contador + ". " + paciente.getNome() + "Enfermidade: " + filaAtendimento.get(paciente));
+            System.out.println(contador + ". " + paciente.getNome() + "    Enfermidade: " + filaAtendimento.get(paciente));
             contador++;
         }
         if(filaAtendimento.isEmpty()){
             System.out.println("Fila de atendimento vazia");
         }
     }
-    synchronized static Paciente getPacienteFila(String CPF){
-        for(Paciente p : filaAtendimento.keySet()){
-            if(CPF.equals(p.getCPF())){
-                return p;
+    public static Paciente getPacienteFila(String dado){
+        for(Entry<Paciente, String> p : filaAtendimento.entrySet()){
+            if(dado.equals(p.getValue())){
+                return p.getKey();
             }
         }
         return null;
@@ -87,45 +86,60 @@ public abstract class FilaAtendimento {
             @Override
             public void run() {
                 while(InicializaEncerraSistema.statusFuncionamento){
-                    Iterator<Entry<Paciente, String>> it = filaAtendimento.entrySet().iterator();
                     for(Medico medico : CadastroMedico.getVectorMedicos()){
-                        while(it.hasNext()){
-                            Entry<Paciente, String> paciente = (Entry<Paciente, String>)it.next();
-                            if(medico.getStatus() == StatusAtendimento.AGUARDANDO){
-                                if(filaAtendimento.size() > 0){
-                                    if(medico.getEspecialidade().equals("Clínico Geral") && paciente.getValue().equals("Geral")){
-                                        medico.diagnostica(getPacienteFila(paciente.getKey().getCPF()));
-                                        try{
-                                            filaAtendimento.remove(paciente.getKey());
-                                        }catch(Exception e){
-                                        }
+                        if(medico.getStatus() == StatusAtendimento.AGUARDANDO){
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e1) {
+                                e1.printStackTrace();
+                            }
+                            if(medico.getEspecialidade().equals("Clínico Geral")){
+                                Paciente g = getPacienteFila("Geral");
+                                if(g != null){
+                                    medico.diagnostica(g);
+                                    try{
+                                        filaAtendimento.remove(g);
+                                    }catch(Exception e){
                                     }
                                 }
-                                if(filaAtendimento.size() > 0){
-                                    if(medico.getEspecialidade().equals("Ortopedista") && paciente.getValue().equals("Ortopédica")){
-                                        medico.diagnostica(getPacienteFila(paciente.getKey().getCPF()));
-                                        try{
-                                            filaAtendimento.remove(paciente.getKey());
-                                        }catch(Exception e){    
-                                        }
+                            }
+                            else if(medico.getEspecialidade().equals("Ortopedista")){
+                                Paciente o = getPacienteFila("Ortopédica");
+                                if(o != null){
+                                    medico.diagnostica(o);
+                                    try{
+                                        filaAtendimento.remove(o);
+                                    }catch(Exception e){    
                                     }
                                 }
-                                if(filaAtendimento.size() > 0){ 
-                                    if(medico.getEspecialidade().equals("Cardiologista") && paciente.getValue().equals("Cardiológica")){
-                                        medico.diagnostica(getPacienteFila(paciente.getKey().getCPF()));
-                                        try{
-                                            filaAtendimento.remove(paciente.getKey());
-                                        }catch(Exception e){
-                                        }
+                            }
+                            else if(medico.getEspecialidade().equals("Cardiologista")){ 
+                                Paciente c = getPacienteFila("Cardíaca");
+                                if(c != null){
+                                    medico.diagnostica(c);
+                                    try{
+                                        filaAtendimento.remove(c);
+                                    }catch(Exception e){
                                     }
                                 }
-                                if(filaAtendimento.size() > 0){ 
-                                    if(Enfermeiro.getStatusRaioX().equals(StatusAtendimento.AGUARDANDO) && paciente.getValue().equals("RaioX")){
-                                        Enfermeiro.curativoExame(getPacienteFila(paciente.getKey().getCPF()), paciente.getValue());
-                                        try{
-                                            filaAtendimento.remove(paciente.getKey());
-                                        }catch(Exception e){
-                                        }
+                            }
+                            if(Enfermeiro.getStatusRaioX().equals(StatusAtendimento.AGUARDANDO)){
+                                Paciente r = getPacienteFila("RaioX");
+                                if(r != null){
+                                    Enfermeiro.curativoExame(r, "RaioX");
+                                    try{
+                                        filaAtendimento.remove(r);
+                                    }catch(Exception e){
+                                    }
+                                }
+                            }
+                            if(filaAtendimento.size() > 0){
+                                Paciente r = getPacienteFila("Exames");
+                                if(r != null){
+                                    Enfermeiro.curativoExame(r, "Exames");
+                                    try{
+                                        filaAtendimento.remove(r);
+                                    }catch(Exception e){
                                     }
                                 }
                             }

@@ -2,6 +2,7 @@ package Beans;
 
 import Sistema.FilaAtendimento;
 import Sistema.StatusAtendimento;
+import java.util.Random;
 
 public class Ortopedista extends Medico{
     private static final long serialVersionUID = 3894482732346504751L;
@@ -16,13 +17,13 @@ public class Ortopedista extends Medico{
         new Thread(new Runnable() {
             @Override
             public void run() {
+                setStatus(StatusAtendimento.EM_ATENDIMENTO);
+                paciente.setStatusAtendimento(StatusAtendimento.EM_ATENDIMENTO);
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                paciente.setStatusAtendimento(StatusAtendimento.EM_ATENDIMENTO);
-                setStatus(StatusAtendimento.EM_ATENDIMENTO);
                 System.out.println("Ortopedista " + getNome() + " atendendo paciente " + paciente.getNome());
                 try {
                     Thread.sleep(30000);
@@ -32,7 +33,8 @@ public class Ortopedista extends Medico{
                 paciente.setStatusAtendimento(StatusAtendimento.AGUARDANDO);
                 setStatus(StatusAtendimento.AGUARDANDO);
                 System.out.println("Ortopedista " + getNome() + " aguardando paciente.");
-                int num = (int)Math.random();
+                Random aleatorio = new Random();
+                int num = aleatorio.nextInt();
                 if(num % 2 == 0){
                     FilaAtendimento.setPacienteNaFila(paciente.getCPF(), "RaioX");
                 }

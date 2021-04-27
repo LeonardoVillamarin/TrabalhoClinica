@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import Beans.Medico;
 import Beans.Paciente;
+import Sistema.StatusAtendimento;
 import Sistema.Cadastro.*;
 
 public class ManipulaArquivo {
@@ -25,7 +26,6 @@ public class ManipulaArquivo {
                 Vector<Paciente> p = (Vector<Paciente>)ois.readObject();
                 ois.close();
                 for(Paciente paciente : p){
-                    System.out.println(paciente);
                     CadastroPaciente.setVectorPacientes(paciente);
                 }
             } catch (ClassNotFoundException e) {
@@ -52,6 +52,7 @@ public class ManipulaArquivo {
                 Vector<Medico> m = (Vector<Medico>)ois.readObject();
                 ois.close();
                 for(Medico medico : m){
+                    medico.setStatus(StatusAtendimento.AGUARDANDO);
                     CadastroMedico.setVectorMedicos(medico);
                 }
             } catch (ClassNotFoundException e) {
