@@ -1,7 +1,7 @@
-package Beans;
+package Clinica.Beans;
 
-import Sistema.FilaAtendimento;
-import Sistema.StatusAtendimento;
+import Clinica.Sistema.FilaAtendimento;
+import Clinica.Sistema.StatusAtendimento;
 import java.util.Random;
 
 public class Ortopedista extends Medico{

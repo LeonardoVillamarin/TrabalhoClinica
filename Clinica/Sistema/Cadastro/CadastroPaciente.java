@@ -1,10 +1,10 @@
-package Sistema.Cadastro;
+package Clinica.Sistema.Cadastro;
 
 import java.util.Scanner;
 import java.util.Vector;
-import Beans.Paciente;
-import Sistema.Exceptions.LancaExceptions;
-import Sistema.Exceptions.PacienteJaCadastradoException;
+import Clinica.Beans.Paciente;
+import Clinica.Sistema.Exceptions.LancaExceptions;
+import Clinica.Sistema.Exceptions.PacienteJaCadastradoException;
 
 public abstract class CadastroPaciente {
     private static Vector<Paciente> pacientesCadastrados = new Vector<Paciente>();

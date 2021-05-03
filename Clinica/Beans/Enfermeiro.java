@@ -1,21 +1,13 @@
-package Beans;
-
+package Clinica.Beans;
 import java.util.Random;
-import Sistema.StatusAtendimento;
 
-public class Enfermeiro extends Pessoa {
+import Clinica.Sistema.StatusAtendimento;
+
+public class Enfermeiro {
     private static final long serialVersionUID = -8169639865117588129L;
     private String COREN;
     private static StatusAtendimento statusRaioX = StatusAtendimento.AGUARDANDO;
 
-    public Enfermeiro(String nome, String CPF, String telefone, String COREN){
-        super(nome, CPF, telefone);
-        this.COREN = COREN;
-    }
-    public Enfermeiro(String nome, String CPF, String telefone, String email, String COREN){
-        super(nome, CPF, telefone, email);
-        this.COREN = COREN;
-    }
     public static StatusAtendimento getStatusRaioX(){
         return statusRaioX;
     }

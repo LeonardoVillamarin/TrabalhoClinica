@@ -1,7 +1,7 @@
-package Sistema;
+package Clinica.Sistema;
 
-import Sistema.Persistencia.ManipulaArquivo;
-import Sistema.Cadastro.*;
+import Clinica.Sistema.Cadastro.*;
+import Clinica.Sistema.Persistencia.ManipulaArquivo;
 
 public abstract class InicializaEncerraSistema {
     static boolean statusFuncionamento = true;  

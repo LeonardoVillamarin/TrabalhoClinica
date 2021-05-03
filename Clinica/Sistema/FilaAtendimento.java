@@ -1,13 +1,12 @@
-package Sistema;
+package Clinica.Sistema;
 
 import java.util.LinkedHashMap;
-import java.util.Scanner;
 import java.util.Map.Entry;
-
-import Beans.Paciente;
-import Beans.Medico;
-import Beans.Enfermeiro;
-import Sistema.Cadastro.*;
+import java.util.Scanner;
+import Clinica.Beans.Enfermeiro;
+import Clinica.Beans.Medico;
+import Clinica.Beans.Paciente;
+import Clinica.Sistema.Cadastro.*;
 
 public abstract class FilaAtendimento {
     private static LinkedHashMap<Paciente, String> filaAtendimento = new LinkedHashMap<Paciente, String>();

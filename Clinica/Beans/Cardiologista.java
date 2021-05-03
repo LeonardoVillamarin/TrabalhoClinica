@@ -1,6 +1,6 @@
-package Beans;
+package Clinica.Beans;
 
-import Sistema.StatusAtendimento;
+import Clinica.Sistema.StatusAtendimento;
 
 public class Cardiologista extends Medico{
     private static final long serialVersionUID = -4406097203785118177L;

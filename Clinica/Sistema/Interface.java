@@ -1,9 +1,9 @@
-package Sistema;
+package Clinica.Sistema;
 
-import java.util.*;
-import Sistema.Cadastro.*;
-import Sistema.Exceptions.MedicoJaCadastradoException;
-import Sistema.Exceptions.PacienteJaCadastradoException;
+import java.util.Scanner;
+import Clinica.Sistema.Cadastro.*;
+import Clinica.Sistema.Exceptions.MedicoJaCadastradoException;
+import Clinica.Sistema.Exceptions.PacienteJaCadastradoException;
 
 public class Interface{
     public static void main(String[] args) {
@@ -11,7 +11,7 @@ public class Interface{
         Scanner resposta = new Scanner(System.in);
         int opcao = 0;
         do{
-            System.out.println("====================================");
+            System.out.println("=============================================");
             System.out.println("O que deseja realizar?");
             System.out.println("1. Cadastrar um médico");
             System.out.println("2. Remover um médico");
@@ -21,8 +21,9 @@ public class Interface{
             System.out.println("6. Consultar fila");
             System.out.println("7. Consultar médicos disponíveis");
             System.out.println("0. Sair do Sistema");
-            System.out.println("====================================");
+            System.out.println("=============================================");
             opcao = Integer.parseInt(resposta.nextLine());
+
             if(opcao == 1){
                 try{
                     CadastroMedico.cadastraMedico();

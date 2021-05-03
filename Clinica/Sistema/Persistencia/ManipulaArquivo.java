@@ -1,12 +1,12 @@
-package Sistema.Persistencia;
+package Clinica.Sistema.Persistencia;
 
 import java.io.*;
 import java.util.Vector;
 
-import Beans.Medico;
-import Beans.Paciente;
-import Sistema.StatusAtendimento;
-import Sistema.Cadastro.*;
+import Clinica.Beans.Medico;
+import Clinica.Beans.Paciente;
+import Clinica.Sistema.StatusAtendimento;
+import Clinica.Sistema.Cadastro.*;
 
 public class ManipulaArquivo {
     public static void writeFilePacientes(){

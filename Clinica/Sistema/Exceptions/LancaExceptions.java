@@ -1,4 +1,4 @@
-package Sistema.Exceptions;
+package Clinica.Sistema.Exceptions;
 
 public abstract class LancaExceptions {
     public static void lancaPacienteJaCadastradoException() throws PacienteJaCadastradoException{

@@ -1,10 +1,10 @@
-package Sistema.Cadastro;
+package Clinica.Sistema.Cadastro;
 
 import java.util.Vector;
 import java.util.Scanner;
-import Beans.*;
-import Sistema.Exceptions.LancaExceptions;
-import Sistema.Exceptions.MedicoJaCadastradoException;
+import Clinica.Beans.*;
+import Clinica.Sistema.Exceptions.LancaExceptions;
+import Clinica.Sistema.Exceptions.MedicoJaCadastradoException;
 
 public class CadastroMedico {
     private static Vector<Medico> medicos = new Vector<Medico>();
@@ -24,16 +24,13 @@ public class CadastroMedico {
         System.out.println("---------------------------------------------");
     }
     public static void removeMedico(String CRM){
-        if(medicos.size() > 1){
-            for(Medico medico : medicos){
-                if(medico.getCRM().equals(CRM)){
-                    medicos.remove(medico);
+        int i = 0;
+        if(medicos.size() > 0){
+            while(medicos.size() > i){
+                if(medicos.get(i).getCRM().equals(CRM)){
+                    medicos.remove(medicos.get(i));
                 }
-            }
-        }
-        else{
-            if(medicos.get(0).getCRM().equals(CRM)){
-                medicos.remove(0);
+                i++;
             }
         }
     }

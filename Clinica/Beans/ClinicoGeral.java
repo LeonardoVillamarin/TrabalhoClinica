@@ -1,8 +1,8 @@
-package Beans;
+package Clinica.Beans;
 
 import java.util.Random;
-import Sistema.FilaAtendimento;
-import Sistema.StatusAtendimento;
+import Clinica.Sistema.FilaAtendimento;
+import Clinica.Sistema.StatusAtendimento;
 
 public class ClinicoGeral extends Medico {
     private static final long serialVersionUID = 5012286997872995337L;

@@ -1,4 +1,4 @@
-package Sistema.Exceptions;
+package Clinica.Sistema.Exceptions;
 
 public class PacienteJaCadastradoException extends Exception {
     public PacienteJaCadastradoException() {

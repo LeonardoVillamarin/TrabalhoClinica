@@ -1,6 +1,6 @@
-package Beans;
+package Clinica.Beans;
 
-import Sistema.StatusAtendimento;
+import Clinica.Sistema.StatusAtendimento;
 
 public class Paciente extends Pessoa {
     private static final long serialVersionUID = 6326713741392272817L;

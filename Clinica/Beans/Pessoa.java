@@ -1,4 +1,4 @@
-package Beans;
+package Clinica.Beans;
 
 import java.io.Serializable;
 

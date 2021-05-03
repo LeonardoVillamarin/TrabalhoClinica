@@ -1,6 +1,6 @@
-package Beans;
+package Clinica.Beans;
 
-import Sistema.StatusAtendimento;
+import Clinica.Sistema.StatusAtendimento;
 
 public abstract class Medico extends Pessoa{
     private static final long serialVersionUID = 3769602414875702428L;
